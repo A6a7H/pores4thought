@@ -32,9 +32,8 @@ parser.add_argument('--stride', type=int,default=16, help='the height/width of t
 parser.add_argument('--output_dir', default='', help='path to store training images')
 
 opt = parser.parse_args()
-print(opt)
 
-opt.image = '../../tiff_threephase/ThreePhase.tif'
+opt.image = '../tiff_ThreePhase/ThreePhase.tif'
 opt.name = str(opt.image_size)+'_'+str(opt.image_size)
 opt.output_dir = str(opt.image_size)+'_'+str(opt.image_size)
 

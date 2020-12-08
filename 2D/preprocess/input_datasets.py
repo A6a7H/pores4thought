@@ -19,6 +19,7 @@ import argparse
 import os
 from PIL import Image
 import h5py
+from tqdm import tqdm
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--image', default='', help='path to image')
@@ -30,7 +31,8 @@ parser.add_argument('--output_dir', default='', help='path to store training ima
 opt = parser.parse_args()
 print(opt)
 
-opt.image = 'tiff_threephase/ThreePhase.tif'
+opt.image = 'tiff_ThreePhase/ThreePhase.tif'
+
 opt.name = 'tiff_threephase'
 opt.output_dir = 'test_threephase'
 
@@ -68,9 +70,9 @@ nc = 3
 
 count = 0
 
-for i in range(0, stack):
-    for j in range(0, image.shape[1], dH):
-        for k in range(0, image.shape[2], dW):
+for i in tqdm(range(0, stack)):
+    for j in tqdm(range(0, image.shape[1], dH)):
+        for k in tqdm(range(0, image.shape[2], dW)):
             subset = image[i, j:j+Height, k:k+Width]
             if subset.shape ==  (Height, Width):
                 # transform image into vectors of zeros and ones
